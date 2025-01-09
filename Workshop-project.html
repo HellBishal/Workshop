@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Student Grade Calculator</title> -->
+</head>
+<body>
+    <h1>Student Grade Calculator</h1>
+    <form id="studentForm">
+        <label>Student Name: <input type="text" id="name" required></label><br><br>
+        <label>Math Marks: <input type="number" id="math" min="0" max="100" required></label><br><br>
+        <label>Science Marks: <input type="number" id="science" min="0" max="100" required></label><br><br>
+        <label>English Marks: <input type="number" id="english" min="0" max="100" required></label><br><br>
+        <button type="button" onclick="addStudent()">Add Student</button>
+    </form>
+
+    <h2>Student Details:</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Math</th>
+                <th>Science</th>
+                <th>English</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="studentTable"></tbody>
+    </table>
+
+    <script>
+        function addStudent() {
+            const name = document.getElementById('name').value;
+            const math = +document.getElementById('math').value;
+            const science = +document.getElementById('science').value;
+            const english = +document.getElementById('english').value;
+
+            if (!name || isNaN(math) || isNaN(science) || isNaN(english)) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const total = math + science + english;
+            const row = `<tr><td>${name}</td><td>${math}</td><td>${science}</td><td>${english}</td><td>${total}</td></tr>`;
+            document.getElementById('studentTable').innerHTML += row;
+            document.getElementById('studentForm').reset();
+        }
+    </script>
+</body>
+</html>
